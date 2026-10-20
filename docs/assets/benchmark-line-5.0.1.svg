@@ -1,70 +1,98 @@
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1120" height="580" viewBox="0 0 1120 580" role="img" aria-labelledby="chartTitle chartDesc">
-<title id="chartTitle">Deep Search 4.0.0 与 5.0.1 离线盲评评分对比折线图</title>
-<desc id="chartDesc">按五项测试类别依次排列：旧版为5、7、6、6.5、7.5分，新版均为9分。每个类别测试两轮，有效对照10次，新版10胜。纵轴从0到10分；横轴是不同测试类别，并非时间趋势。</desc>
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720" role="img" aria-labelledby="figure-title figure-description">
+<title id="figure-title">Deep Search 5.0.1 与 4.0.0 的五项离线盲评手绘折线图</title>
+<desc id="figure-description">白纸、铅笔、钢笔风格的真实矢量图。五类任务从左往右依次是研究规划、简单事实、口径冲突、引用支持、无工具回答。旧版评分分别为5、7、6、6.5、7.5分，新版每项为9分。总计每题两轮、十次有效对照，新版十胜。旧版均分6.40，新版均分9.00，增加2.60分。纵轴是0至10分，横轴为离散研究任务类别，不是时间趋势。项目自测而非独立认证。</desc>
 <defs>
-  <linearGradient id="canvas" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#0B1526"/><stop offset="100%" stop-color="#121B2D"/></linearGradient>
-  <linearGradient id="newLine" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#83F2DB"/><stop offset="100%" stop-color="#36CFAE"/></linearGradient>
-  <style>
-    text {font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans CJK SC","PingFang SC","Microsoft YaHei",sans-serif;}
-    .muted{fill:#92A4BA} .tick{font-size:14px;fill:#8797AD} .xlabel{font-size:16px;fill:#DDE8F4;font-weight:550}
-  </style>
+ <style>
+  .body {font-family:"AR PL KaitiM GB","STKaiti","KaiTi","PingFang SC","Noto Sans CJK SC",Arial,sans-serif;fill:#343C40;}
+  .hand {font-family:"AR PL KaitiM GB","STKaiti","KaiTi","Noto Serif CJK SC",serif;fill:#20282C;}
+  .english {font-family:"Comic Neue","Segoe Print","Bradley Hand",cursive;fill:#20282C;}
+  .axis {font-family:"Comic Neue","Segoe Print",Arial,sans-serif;fill:#747C7F;}
+ </style>
 </defs>
-<rect x="0" y="0" width="1120" height="580" rx="26" fill="url(#canvas)"/>
-<rect x="1" y="1" width="1118" height="578" rx="25" fill="none" stroke="#27364C" stroke-width="2"/>
-<circle cx="70" cy="55" r="5" fill="#69E9CB"/>
-<text x="85" y="60" font-size="14" font-weight="700" letter-spacing="2" fill="#A1B4CA">DEEP SEARCH  /  V5.0.1  /  BENCHMARK</text>
-<text x="70" y="115" font-size="32" font-weight="700" fill="#F5FBFF">五项离线盲评 · 评分对比</text>
-<text x="70" y="148" font-size="15" class="muted">相同模型 · 不同 Skill 规则 · 另一模型盲评</text>
-<rect x="840" y="58" width="212" height="91" rx="16" fill="#18283A" stroke="#2D4A55"/>
-<text x="859" y="84" font-size="14" fill="#AFC4CE">平均评分 / 10</text>
-<text x="859" y="121" font-size="26" font-weight="750" fill="#EAF2FA">6.40</text>
-<text x="921" y="121" font-size="21" fill="#6C8296">→</text>
-<text x="955" y="121" font-size="26" font-weight="750" fill="#69E9CB">9.00</text>
-<line x1="70" x2="1050" y1="169" y2="169" stroke="#243347"/>
-<line x1="70" x2="94" y1="188" y2="188" stroke="#B7C4D8" stroke-width="3" stroke-linecap="round"/>
-<circle cx="82" cy="188" r="4" fill="#D6E0EF"/>
-<text x="103" y="193" font-size="15" fill="#CBD8E7">4.0.0 旧版</text>
-<line x1="263" x2="287" y1="188" y2="188" stroke="#5CE4C4" stroke-width="3" stroke-linecap="round"/>
-<circle cx="275" cy="188" r="4" fill="#5CE4C4"/>
-<text x="296" y="193" font-size="15" fill="#B4F8E8">5.0.1 新版</text>
-<text x="1048" y="188" text-anchor="end" font-size="13" class="muted">评分范围：0—10</text>
-<line x1="127" y1="440" x2="1040" y2="440" stroke="#53667C" stroke-width="1.5" stroke-dasharray="none"/><text x="110" y="445" text-anchor="end" class="tick">0</text>
-<line x1="127" y1="398" x2="1040" y2="398" stroke="#253447" stroke-width="1" stroke-dasharray="4 7"/><text x="110" y="403" text-anchor="end" class="tick">2</text>
-<line x1="127" y1="356" x2="1040" y2="356" stroke="#253447" stroke-width="1" stroke-dasharray="4 7"/><text x="110" y="361" text-anchor="end" class="tick">4</text>
-<line x1="127" y1="314" x2="1040" y2="314" stroke="#253447" stroke-width="1" stroke-dasharray="4 7"/><text x="110" y="319" text-anchor="end" class="tick">6</text>
-<line x1="127" y1="272" x2="1040" y2="272" stroke="#253447" stroke-width="1" stroke-dasharray="4 7"/><text x="110" y="277" text-anchor="end" class="tick">8</text>
-<line x1="127" y1="230" x2="1040" y2="230" stroke="#253447" stroke-width="1" stroke-dasharray="4 7"/><text x="110" y="235" text-anchor="end" class="tick">10</text>
-<path d="M 180 335 C 214.16666666666666 328, 316.6666666666667 296.5, 385 293 C 453.3333333333333 289.5, 521.6666666666666 312.25, 590 314 C 658.3333333333334 315.75, 726.6666666666666 308.75, 795 303.5 C 863.3333333333334 298.25, 965.8333333333334 286, 1000 282.5" fill="none" stroke="#C0CCDB" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" opacity=".88"/>
-<path d="M 180 251 L 385 251 L 590 251 L 795 251 L 1000 251" fill="none" stroke="url(#newLine)" stroke-width="4" stroke-linecap="round"/>
-<circle cx="180" cy="335" r="6" fill="#B7C4D8" stroke="#121B2D" stroke-width="3"/>
-<circle cx="180" cy="251" r="7" fill="#6EE9CD" stroke="#121B2D" stroke-width="3"/>
-<text x="180" y="226" text-anchor="middle" font-size="16" font-weight="700" fill="#9BFFDF">9.0</text>
-<text x="180" y="359" text-anchor="middle" font-size="16" font-weight="650" fill="#CFDBE9">5.0</text>
-<text x="180" y="465" text-anchor="middle" class="xlabel">研究规划</text>
-<circle cx="385" cy="293" r="6" fill="#B7C4D8" stroke="#121B2D" stroke-width="3"/>
-<circle cx="385" cy="251" r="7" fill="#6EE9CD" stroke="#121B2D" stroke-width="3"/>
-<text x="385" y="226" text-anchor="middle" font-size="16" font-weight="700" fill="#9BFFDF">9.0</text>
-<text x="385" y="317" text-anchor="middle" font-size="16" font-weight="650" fill="#CFDBE9">7.0</text>
-<text x="385" y="465" text-anchor="middle" class="xlabel">事实直答</text>
-<circle cx="590" cy="314" r="6" fill="#B7C4D8" stroke="#121B2D" stroke-width="3"/>
-<circle cx="590" cy="251" r="7" fill="#6EE9CD" stroke="#121B2D" stroke-width="3"/>
-<text x="590" y="226" text-anchor="middle" font-size="16" font-weight="700" fill="#9BFFDF">9.0</text>
-<text x="590" y="338" text-anchor="middle" font-size="16" font-weight="650" fill="#CFDBE9">6.0</text>
-<text x="590" y="465" text-anchor="middle" class="xlabel">口径冲突</text>
-<circle cx="795" cy="303.5" r="6" fill="#B7C4D8" stroke="#121B2D" stroke-width="3"/>
-<circle cx="795" cy="251" r="7" fill="#6EE9CD" stroke="#121B2D" stroke-width="3"/>
-<text x="795" y="226" text-anchor="middle" font-size="16" font-weight="700" fill="#9BFFDF">9.0</text>
-<text x="795" y="327.5" text-anchor="middle" font-size="16" font-weight="650" fill="#CFDBE9">6.5</text>
-<text x="795" y="465" text-anchor="middle" class="xlabel">引用核验</text>
-<circle cx="1000" cy="282.5" r="6" fill="#B7C4D8" stroke="#121B2D" stroke-width="3"/>
-<circle cx="1000" cy="251" r="7" fill="#6EE9CD" stroke="#121B2D" stroke-width="3"/>
-<text x="1000" y="226" text-anchor="middle" font-size="16" font-weight="700" fill="#9BFFDF">9.0</text>
-<text x="1000" y="306.5" text-anchor="middle" font-size="16" font-weight="650" fill="#CFDBE9">7.5</text>
-<text x="1000" y="465" text-anchor="middle" class="xlabel">无工具回答</text>
-<line x1="70" x2="1050" y1="493" y2="493" stroke="#243347"/>
-<rect x="70" y="509" width="123" height="30" rx="15" fill="#143D3C" stroke="#26645A"/>
-<text x="131.5" y="529" text-anchor="middle" font-size="15" font-weight="700" fill="#9BFFE4">10 / 10 胜</text>
-<text x="207" y="528" font-size="15" fill="#D2DFED">5 题 × 2 轮 · 旧版均分 6.40 · 新版均分 9.00</text>
-<text x="70" y="556" font-size="13" fill="#8094AB">项目本机自测 · 2026-10-19 · 横轴为测试类别而非时间趋势 · 详见评测说明</text>
-<text x="1048" y="555" text-anchor="end" font-size="12" fill="#8094AB">Deep Search / Benchmark</text>
+<rect width="1280" height="720" fill="#FFFEFB"/>
+<path d="M 78 61 Q 330 60.5 600 61.8" stroke="#D5D6CF" stroke-width="1.2" fill="none" stroke-linecap="round" stroke-linejoin="round" />
+<text x="81" y="43" class="english" font-size="16" fill="#626C6F" letter-spacing="1.8">FIELD NOTES  /  OCT 2026</text>
+<text x="1192" y="43" class="english" font-size="17" fill="#626C6F" text-anchor="end">01 / 01</text>
+<text x="80" y="123" class="english" font-size="54" fill="#1B292F" font-weight="500" font-style="italic">Deep Search 5.0.1</text>
+<path d="M 84 135 C 205 130 317 134 492 130 L 491 140 C 339 141 205 139 86 144 Z" stroke="none" stroke-width="1" fill="#E4EDDC" stroke-linecap="round" stroke-linejoin="round" opacity=".96" />
+<text x="84" y="181" class="hand" font-size="27" fill="#303838">更优秀的深度搜索工具 · 离线盲评对照</text>
+<path d="M 905 93 C 984 89 1099 90 1188 87" stroke="#89938A" stroke-width="1.3" fill="none" stroke-linecap="round" stroke-linejoin="round" opacity=".78" />
+<text x="910" y="121" class="hand" font-size="20" fill="#515C59">五类测试 · 每类两轮</text>
+<text x="910" y="151" class="body" font-size="15" fill="#7B8583">同一模型 / 不同 Skill 规则</text>
+<path d="M 1144 171 Q 1170 173 1184 168 M 1176 161 L 1185 168 L 1176 175" stroke="#75887D" stroke-width="1.7" fill="none" stroke-linecap="round" stroke-linejoin="round" />
+<text x="85" y="226" class="hand" font-size="17" fill="#525A5B">评分 / 10</text>
+<path d="M 710 219 Q 730 216 750 220" stroke="#89928F" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round" />
+<circle cx="730" cy="219" r="4.5" fill="#929A9C" stroke="#FFFEFB" stroke-width="1.3"/>
+<text x="763" y="225" class="body" font-size="16" fill="#686F70">4.0.0 旧版</text>
+<path d="M 911 219 Q 929 217 951 220" stroke="#2C69AA" stroke-width="3.1" fill="none" stroke-linecap="round" stroke-linejoin="round" />
+<circle cx="931" cy="219" r="5" fill="#3072B7" stroke="#FFFEFB" stroke-width="1.4"/>
+<text x="964" y="225" class="body" font-size="16" fill="#2D6EAE">5.0.1 新版</text>
+<path d="M 151 523.3 Q 611 522.55 1130 523.1" stroke="#B0B5B0" stroke-width="1.15" fill="none" stroke-linecap="round" stroke-linejoin="round" opacity=".78" />
+<text x="125" y="528" class="axis" font-size="16" text-anchor="end">0</text>
+<path d="M 151 469 C 430 469.1 814 468.8 1130 469" stroke="#DFE2DD" stroke-width=".95" fill="none" stroke-linecap="round" stroke-linejoin="round" opacity=".8" stroke-dasharray="4.5 9"/>
+<text x="125" y="474" class="axis" font-size="16" text-anchor="end">2</text>
+<path d="M 151 415 C 430 415.1 814 414.8 1130 415" stroke="#DFE2DD" stroke-width=".95" fill="none" stroke-linecap="round" stroke-linejoin="round" opacity=".8" stroke-dasharray="4.5 9"/>
+<text x="125" y="420" class="axis" font-size="16" text-anchor="end">4</text>
+<path d="M 151 361 C 430 361.1 814 360.8 1130 361" stroke="#DFE2DD" stroke-width=".95" fill="none" stroke-linecap="round" stroke-linejoin="round" opacity=".8" stroke-dasharray="4.5 9"/>
+<text x="125" y="366" class="axis" font-size="16" text-anchor="end">6</text>
+<path d="M 151 307 C 430 307.1 814 306.8 1130 307" stroke="#DFE2DD" stroke-width=".95" fill="none" stroke-linecap="round" stroke-linejoin="round" opacity=".8" stroke-dasharray="4.5 9"/>
+<text x="125" y="312" class="axis" font-size="16" text-anchor="end">8</text>
+<path d="M 151 253.3 Q 611 252.55 1130 253.1" stroke="#B0B5B0" stroke-width="1.15" fill="none" stroke-linecap="round" stroke-linejoin="round" opacity=".78" />
+<text x="125" y="258" class="axis" font-size="16" text-anchor="end">10</text>
+<path d="M 152 247 Q 150 380 152 525 M 148 522 Q 641 523.5 1133 523" stroke="#3E4749" stroke-width="1.65" fill="none" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M 235 524 l -.8 6" stroke="#909A99" stroke-width="1.2" fill="none" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M 439 524 l -.8 6" stroke="#909A99" stroke-width="1.2" fill="none" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M 643 524 l -.8 6" stroke="#909A99" stroke-width="1.2" fill="none" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M 847 524 l -.8 6" stroke="#909A99" stroke-width="1.2" fill="none" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M 1051 524 l -.8 6" stroke="#909A99" stroke-width="1.2" fill="none" stroke-linecap="round" stroke-linejoin="round" />
+<g id="series-old" aria-label="旧版 4.0.0">
+<path d="M 235 388 C 290 374 372 334 439 334 C 512 336 576 364 643 361 C 715 360 782 348 847 347.5 C 928 344.5 987 322 1051 320.5" stroke="#6B7477" stroke-width="2.6" fill="none" stroke-linecap="round" stroke-linejoin="round" />
+<circle cx="235" cy="388.0" r="5.1" fill="#707A7D" stroke="#FFFEFB" stroke-width="1.2"/>
+<text x="235" y="418.0" class="english" font-size="20" fill="#525C60" text-anchor="middle">5.0</text>
+<circle cx="439" cy="334.0" r="5.1" fill="#707A7D" stroke="#FFFEFB" stroke-width="1.2"/>
+<text x="439" y="364.0" class="english" font-size="20" fill="#525C60" text-anchor="middle">7.0</text>
+<circle cx="643" cy="361.0" r="5.1" fill="#707A7D" stroke="#FFFEFB" stroke-width="1.2"/>
+<text x="643" y="391.0" class="english" font-size="20" fill="#525C60" text-anchor="middle">6.0</text>
+<circle cx="847" cy="347.5" r="5.1" fill="#707A7D" stroke="#FFFEFB" stroke-width="1.2"/>
+<text x="847" y="377.5" class="english" font-size="20" fill="#525C60" text-anchor="middle">6.5</text>
+<circle cx="1051" cy="320.5" r="5.1" fill="#707A7D" stroke="#FFFEFB" stroke-width="1.2"/>
+<text x="1051" y="350.5" class="english" font-size="20" fill="#525C60" text-anchor="middle">7.5</text>
+</g>
+<g id="series-new" aria-label="新版 5.0.1">
+<path d="M 235 280 C 296 278.5 375 280.6 439 280 C 502 279.5 575 279.2 643 280 C 707 281.1 790 279.7 847 280 C 914 280.9 989 279.7 1051 280" stroke="#2B6FB6" stroke-width="3.05" fill="none" stroke-linecap="round" stroke-linejoin="round" />
+<circle cx="235" cy="280.0" r="5.3" fill="#337CC1" stroke="#FFFEFB" stroke-width="1.5"/>
+<text x="235" y="260.0" class="english" font-size="20" fill="#2569B0" text-anchor="middle">9.0</text>
+<circle cx="439" cy="280.0" r="5.3" fill="#337CC1" stroke="#FFFEFB" stroke-width="1.5"/>
+<text x="439" y="260.0" class="english" font-size="20" fill="#2569B0" text-anchor="middle">9.0</text>
+<circle cx="643" cy="280.0" r="5.3" fill="#337CC1" stroke="#FFFEFB" stroke-width="1.5"/>
+<text x="643" y="260.0" class="english" font-size="20" fill="#2569B0" text-anchor="middle">9.0</text>
+<circle cx="847" cy="280.0" r="5.3" fill="#337CC1" stroke="#FFFEFB" stroke-width="1.5"/>
+<text x="847" y="260.0" class="english" font-size="20" fill="#2569B0" text-anchor="middle">9.0</text>
+<circle cx="1051" cy="280.0" r="5.3" fill="#337CC1" stroke="#FFFEFB" stroke-width="1.5"/>
+<text x="1051" y="260.0" class="english" font-size="20" fill="#2569B0" text-anchor="middle">9.0</text>
+</g>
+<text x="235" y="555" class="hand" font-size="20" fill="#303637" text-anchor="middle">研究规划</text>
+<text x="235" y="581" class="body" font-size="14" fill="#89908D" text-anchor="middle">拆解任务</text>
+<text x="439" y="555" class="hand" font-size="20" fill="#303637" text-anchor="middle">简单事实</text>
+<text x="439" y="581" class="body" font-size="14" fill="#89908D" text-anchor="middle">事实直答</text>
+<text x="643" y="555" class="hand" font-size="20" fill="#303637" text-anchor="middle">口径冲突</text>
+<text x="643" y="581" class="body" font-size="14" fill="#89908D" text-anchor="middle">统一指标口径</text>
+<text x="847" y="555" class="hand" font-size="20" fill="#303637" text-anchor="middle">引用支持</text>
+<text x="847" y="581" class="body" font-size="14" fill="#89908D" text-anchor="middle">逐条核实</text>
+<text x="1051" y="555" class="hand" font-size="20" fill="#303637" text-anchor="middle">无工具回答</text>
+<text x="1051" y="581" class="body" font-size="14" fill="#89908D" text-anchor="middle">诚实说明局限</text>
+<path d="M 1121 259 Q 1131 264 1127 279" stroke="#91A4A0" stroke-width="1.15" fill="none" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M 80 609 Q 610 611 1193 609" stroke="#D1D5D0" stroke-width="1.1" fill="none" stroke-linecap="round" stroke-linejoin="round" />
+<text x="91" y="638" class="hand" font-size="17" fill="#6B7371">旧版均分</text>
+<text x="91" y="673" class="english" font-size="34" fill="#5C6564">6.40</text>
+<path d="M 325 659 C 373 658 418 659 461 658 M 451 648 L 463 658 L 451 668" stroke="#858E8B" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" />
+<text x="505" y="638" class="hand" font-size="17" fill="#576C77">新版均分</text>
+<text x="505" y="673" class="english" font-size="37" fill="#246AAD">9.00</text>
+<path d="M 500 681 Q 555 675 617 678" stroke="#2B72B4" stroke-width="2.7" fill="none" stroke-linecap="round" stroke-linejoin="round" />
+<text x="900" y="638" class="hand" font-size="17" fill="#6B7371">平均提升</text>
+<text x="900" y="673" class="english" font-size="37" fill="#526F54">+2.60</text>
+<path d="M 895 683 Q 968 678 1022 680" stroke="#8CB18F" stroke-width="2.9" fill="none" stroke-linecap="round" stroke-linejoin="round" />
+<text x="1191" y="668" class="hand" font-size="16" fill="#64736A" text-anchor="end">10 / 10  新版胜出</text>
+<path d="M 80 695 Q 588 694.5 1193 695" stroke="#E1E3DC" stroke-width=".95" fill="none" stroke-linecap="round" stroke-linejoin="round" />
+<text x="80" y="711" class="body" font-size="15" fill="#87908E">2026-10-19 项目自测   ·   类别对比，非时间趋势   ·   模型盲评，非事实准确率</text>
 </svg>
