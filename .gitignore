@@ -1,0 +1,8 @@
+.DS_Store
+*.pyc
+__pycache__/
+evals/runs/
+.env
+.env.*
+!.env.example
+LOCAL-NOTES.md
