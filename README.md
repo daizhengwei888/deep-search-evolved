@@ -6,17 +6,13 @@
 
 ## 实测对比 · 4.0.0 → 5.0.1
 
-同一模型按两版规则分别作答，再由模型盲评（2026-10-19—20，本机自测）：
+**同一模型，不同研究规则。** 下面展示离线盲评的五类任务得分（10 分制，各类题目测试两轮），横轴是研究任务类别，**不是时间趋势**。
 
-| 评测场景 | 有效对照 | 旧版均分 | 新版均分 | 新版胜 / 平 / 负 |
-|---|---:|---:|---:|---:|
-| 离线题盲评 | 10 | 6.40 | **9.00** | **10 / 0 / 0** |
-| 多模型交叉评测 | 8 | — | — | **7 / 1 / 0** |
-| 联网宿主实跑 | 3 | 7.00 | **8.67** | **3 / 0 / 0** |
-| **有效判定总计** | **21** | — | — | **20 / 1 / 0** |
+![Deep Search 4.0.0 vs 5.0.1：五项离线盲评双曲线评分对比](docs/assets/benchmark-line-5.0.1.svg)
+
+**离线盲评：**旧版均分 **6.40** → 新版 **9.00**，10 次有效判定全部新版获胜。加上交叉盲评与联网宿主实跑，合计 **21 次有效配对判定：新版 20 胜、1 平、0 负**。参见 [详细实验、逐类得分及统计口径](docs/benchmark-5.0.1.md)。
 
 > **数据说明**：原始记录有 22 次判定，其中 1 次旧版超时，没有有效成对对照，已剔除。交叉评测的原始均分因缺少逐次评分无法按有效样本重算，故不展示。此处的胜负是**模型盲评的相对偏好**，不是事实准确率；21 次判定并非 21 道独立题目。样本量较小，结果不能代表所有任务。详见 [完整评测与局限](docs/benchmark-5.0.1.md)。
-
 
 > **5.0.1 (evaluated 2026-10-20)** — research stops on coverage and evidence quality instead of fixed source/data-point quotas; answers scale COMPACT / STANDARD / FULL; citations must be support-verified; honest degraded mode when tools fail; host-native search first, bundled engines as validated fallback; ZCode adapter; strict-run metrics fixed; offline eval fixtures. See `SKILL.md` §0–§12.
 
