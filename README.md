@@ -1,6 +1,24 @@
-# Deep Search
+# Deep Search · 更优秀的深度搜索工具
 
-> **5.0 (local merge, 2026-10-19)** — research stops on coverage and evidence quality instead of fixed source/data-point quotas; answers scale COMPACT / STANDARD / FULL; citations must be support-verified; honest degraded mode when tools fail; host-native search first, bundled engines as validated fallback; ZCode adapter; strict-run metrics fixed; offline eval fixtures. See `SKILL.md` §0–§12.
+> **更优秀的深度搜索工具** —— 本地优先、跨平台、注重证据验证和可追溯性的 AI 深度研究 Skill。
+
+**v5.0.1** · [实测方法与数据说明](docs/benchmark-5.0.1.md) · [MIT License](LICENSE)
+
+## 实测对比 · 4.0.0 → 5.0.1
+
+同一模型按两版规则分别作答，再由模型盲评（2026-10-19—20，本机自测）：
+
+| 评测场景 | 有效对照 | 旧版均分 | 新版均分 | 新版胜 / 平 / 负 |
+|---|---:|---:|---:|---:|
+| 离线题盲评 | 10 | 6.40 | **9.00** | **10 / 0 / 0** |
+| 多模型交叉评测 | 8 | — | — | **7 / 1 / 0** |
+| 联网宿主实跑 | 3 | 7.00 | **8.67** | **3 / 0 / 0** |
+| **有效判定总计** | **21** | — | — | **20 / 1 / 0** |
+
+> **数据说明**：原始记录有 22 次判定，其中 1 次旧版超时，没有有效成对对照，已剔除。交叉评测的原始均分因缺少逐次评分无法按有效样本重算，故不展示。此处的胜负是**模型盲评的相对偏好**，不是事实准确率；21 次判定并非 21 道独立题目。样本量较小，结果不能代表所有任务。详见 [完整评测与局限](docs/benchmark-5.0.1.md)。
+
+
+> **5.0.1 (evaluated 2026-10-20)** — research stops on coverage and evidence quality instead of fixed source/data-point quotas; answers scale COMPACT / STANDARD / FULL; citations must be support-verified; honest degraded mode when tools fail; host-native search first, bundled engines as validated fallback; ZCode adapter; strict-run metrics fixed; offline eval fixtures. See `SKILL.md` §0–§12.
 
 **Deep Search is a local-first, multi-platform deep research skill for people who are tired of shallow summaries.**
 
@@ -75,8 +93,8 @@ That is the difference between a summary tool and a research tool.
 ## Install
 
 ```bash
-git clone https://github.com/AdamFangKK/deep-search.git
-cd deep-search
+git clone https://github.com/daizhengwei888/deep-search-evolved.git
+cd deep-search-evolved
 bash setup.sh
 bash scripts/check-tools.sh
 ```
