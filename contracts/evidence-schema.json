@@ -1,0 +1,144 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Deep Search Evidence Record (deep-search 5.0)",
+  "description": "One record per atomic, checkable claim. Only SUPPORT_VERIFIED records may support conclusions. 自然语言层的标签（VERIFIED_FROM_AVAILABLE_MATERIAL / MODEL_BACKGROUND_UNVERIFIED / CANNOT_VERIFY）见 contracts/runtime-contract.md，并与本字段一一映射，见 config/evidence-policy.json 的 vocabulary。",
+  "type": "object",
+  "required": [
+    "source_type",
+    "title",
+    "url",
+    "retrieved_at",
+    "claim",
+    "evidence_snippet",
+    "confidence",
+    "bias_risk",
+    "provider",
+    "verification_status"
+  ],
+  "properties": {
+    "claim_id": {
+      "type": "string"
+    },
+    "source_id": {
+      "type": "string"
+    },
+    "source_type": {
+      "type": "string",
+      "enum": [
+        "web",
+        "news",
+        "academic",
+        "community",
+        "code",
+        "document",
+        "financial",
+        "legal",
+        "hardware",
+        "user_provided"
+      ]
+    },
+    "title": {
+      "type": "string",
+      "minLength": 1
+    },
+    "url": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Canonical URL, or a document identifier for user-provided files. Never reconstructed from memory."
+    },
+    "author_or_organization": {
+      "type": "string"
+    },
+    "published_at": {
+      "type": "string",
+      "description": "ISO-8601 date when known"
+    },
+    "retrieved_at": {
+      "type": "string",
+      "description": "ISO-8601 timestamp"
+    },
+    "primary_or_secondary": {
+      "type": "string",
+      "enum": [
+        "primary",
+        "secondary",
+        "tertiary"
+      ]
+    },
+    "stable_identifier": {
+      "type": "string",
+      "description": "DOI / arXiv / PMID / filing ID / statute ID / commit, when available"
+    },
+    "locator": {
+      "type": "string",
+      "description": "page / section / table / paragraph / timestamp"
+    },
+    "claim": {
+      "type": "string",
+      "minLength": 1
+    },
+    "evidence_snippet": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Shortest excerpt that shows what the source actually says. No minimum length."
+    },
+    "relation": {
+      "type": "string",
+      "enum": [
+        "SUPPORTS",
+        "CONTRADICTS",
+        "CONTEXT_ONLY"
+      ]
+    },
+    "verification_status": {
+      "type": "string",
+      "enum": [
+        "FETCHED",
+        "IDENTITY_VERIFIED",
+        "SUPPORT_VERIFIED",
+        "UNVERIFIED",
+        "FAILED"
+      ],
+      "description": "FETCHED = 取到但未核对身份；IDENTITY_VERIFIED = 来源身份可信；SUPPORT_VERIFIED = 原文片段确实支持该 claim（唯一可用于支撑结论的状态）；UNVERIFIED = 取到但无法确认身份或内容（含论文在单库查不到的情况）；FAILED = 抓取失败。"
+    },
+    "verification_note": {
+      "type": "string"
+    },
+    "independence_group": {
+      "type": "string",
+      "description": "Records that repeat the same underlying study, release, dataset or wire story share one group"
+    },
+    "confidence": {
+      "type": "string",
+      "enum": [
+        "LOW",
+        "MEDIUM",
+        "HIGH"
+      ]
+    },
+    "confidence_reason": {
+      "type": "string"
+    },
+    "bias_risk": {
+      "type": "string",
+      "enum": [
+        "LOW",
+        "MEDIUM",
+        "HIGH"
+      ]
+    },
+    "provider": {
+      "type": "string",
+      "minLength": 1
+    },
+    "tags": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "notes": {
+      "type": "string"
+    }
+  }
+}

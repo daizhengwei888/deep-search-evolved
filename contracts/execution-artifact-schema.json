@@ -1,0 +1,90 @@
+{
+  "version": 2,
+  "description": "Required artifacts for strict deep-search runs (deep-search 5.0)",
+  "required_artifacts": {
+    "plan.json": {
+      "required": true,
+      "contains": [
+        "query",
+        "intent",
+        "search_mode",
+        "capabilities",
+        "strict"
+      ]
+    },
+    "run-summary.json": {
+      "required": true,
+      "contains": [
+        "query",
+        "platform",
+        "strict",
+        "stages",
+        "artifacts",
+        "report_contract",
+        "deviation_count"
+      ]
+    },
+    "sources.json": {
+      "required": true,
+      "contains": [
+        "broad_web_search",
+        "community_discussion"
+      ]
+    },
+    "deviations.json": {
+      "required": true,
+      "contains": [
+        "deviations"
+      ]
+    },
+    "report-template.md": {
+      "required": true,
+      "contains_sections": [
+        "执行摘要 / Executive Summary",
+        "研究方法 / Methodology",
+        "全景分析 / Universal Analysis",
+        "实证数据 / Empirical Evidence",
+        "垂直分析 / Domain Analysis",
+        "综合评估 / Synthesis",
+        "行动建议 / Recommendations",
+        "附录 / Appendices"
+      ]
+    },
+    "final-report.json": {
+      "required": true,
+      "contains": [
+        "title",
+        "generated_at",
+        "data_points",
+        "source_domains",
+        "overall_confidence",
+        "sections",
+        "confidence_reason"
+      ]
+    },
+    "final-report.md": {
+      "required": true,
+      "contains_sections": [
+        "执行摘要 / Executive Summary",
+        "研究方法 / Methodology",
+        "全景分析 / Universal Analysis",
+        "实证数据 / Empirical Evidence",
+        "垂直分析 / Domain Analysis",
+        "综合评估 / Synthesis",
+        "行动建议 / Recommendations",
+        "附录 / Appendices"
+      ]
+    }
+  },
+  "stage_statuses": [
+    "completed",
+    "partial",
+    "failed",
+    "skipped"
+  ],
+  "notes": [
+    "A stage with recorded deviations must not be 'completed'.",
+    "data_points counts parsed candidate results (unverified); source_domains counts real result domains.",
+    "Strict runs do not read or verify sources, so overall_confidence is LOW or MEDIUM."
+  ]
+}

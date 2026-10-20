@@ -1,0 +1,20 @@
+{
+  "name": "deep-search-local",
+  "owner": {
+    "name": "Local"
+  },
+  "metadata": {
+    "description": "Multi-platform deep research skill for exhaustive multi-faceted investigation"
+  },
+  "plugins": [
+    {
+      "name": "deep-search",
+      "source": {
+        "source": "path",
+        "path": "."
+      },
+      "description": "Multi-source deep research: plan sub-questions, verify citations, handle conflicts, adapt depth, degrade honestly without tools",
+      "version": "5.0.0"
+    }
+  ]
+}

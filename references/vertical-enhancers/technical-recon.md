@@ -1,0 +1,122 @@
+# The Technical Recon
+
+**Execution Surface**: `code_intelligence` capability + local code analysis  
+**Category**: Vertical Enhancer (Code/Tech topics)  
+**Trigger**: Keywords: repo, library, framework, API, code
+
+---
+
+## Unique Mandate
+
+Deep technical reconnaissance:
+- Repository scanning
+- Code pattern analysis
+- GitHub Issues/PRs investigation
+- API documentation validation
+- **Ecosystem context** (news, adoption trends, community health)
+
+---
+
+## Two-Layer Tool Stack
+
+### Primary Layer (Code Deep Dive)
+**Tools / capabilities**:
+- `code_intelligence` capability — repository metadata, issues, PRs when available
+- local code analysis — file structure, symbols, AST search
+
+**Note**: `code_intelligence` may depend on an optional external provider. If absent, fall back to local analysis + `broad_web_search`.
+
+**GitHub API limits** (GitHub REST docs): unauthenticated requests get 60 per hour; authenticated (`gh` CLI or `GITHUB_TOKEN`) get 5,000 per hour; the search endpoints have their own much lower per-minute limit. Use `per_page=100`, avoid bursts of search calls, and read `x-ratelimit-remaining` / `retry-after` instead of retrying blindly. GitHub Trending has no official API.
+
+### Base Layer (Ecosystem Context)
+**Capability**: `broad_web_search`
+- **Purpose**: Gather ecosystem news, adoption trends, community discussions outside GitHub
+- **Activation**: After code analysis, use for:
+  - "[library] production use cases"
+  - "[framework] performance benchmarks {current year}"
+  - "[tool] vs [alternative] comparison"
+  - "[technology] deprecation announcement"
+
+```bash
+# Primary Layer examples
+# - repository issue/PR inspection via code_intelligence when available
+# - local symbol or AST analysis
+
+# Base Layer: Ecosystem context
+bash ~/.agents/skills/deep-search/scripts/swarm-search.sh \
+  "[library] production adoption enterprise" general
+bash ~/.agents/skills/deep-search/scripts/swarm-search.sh \
+  "[framework] vs [alternative] benchmark performance" tech
+```
+
+---
+
+## Collaboration Pattern
+
+**Receives from**:
+- Global Observer: General web context about the technology
+- Underground OSINT: Developer community sentiment (Reddit/HN)
+
+**Base Layer provides**:
+- Independent corroboration of adoption claims (trace to original sources)
+- Broader ecosystem news (beyond GitHub)
+- Performance benchmarks from multiple sources
+
+**Primary Layer provides**:
+- Hard code metrics (stars, issues, PRs)
+- Actual implementation patterns
+- Repository health indicators
+
+---
+
+## Output Format
+
+```markdown
+## Technical Analysis
+
+### Code Repository Health
+- Open issues: [N] (critical: [N])
+- Last commit: [date]
+- Maintenance status: [active/stale/abandoned]
+
+### Implementation Patterns
+- [Pattern 1]: [Description + example from ast_grep]
+- [Pattern 2]: [Description + example from ast_grep]
+
+### Ecosystem Context (Base Layer)
+| Source | Finding | Independent Corroboration |
+|--------|---------|------------------------|
+| Engine A | "[Library] used by X companies" | Found on 3/5 engines |
+| Engine B | "[Framework] 40% faster in benchmarks" | Found on 2/5 engines |
+
+### Architecture Insights
+- Tech stack: [list from code analysis]
+- Adoption trends: [from Base Layer ecosystem search]
+- Key dependencies: [list]
+```
+
+---
+
+## Why Two Layers?
+
+| Aspect | Primary (`code_intelligence` + local analysis) | Base (`broad_web_search`) |
+|--------|---------------------|---------------------------|
+| **Data** | Repo stats, code patterns, Issues | News, blogs, benchmarks, case studies |
+| **Question** | "What IS the code?" | "How is it USED in production?" |
+| **Source** | GitHub API, AST analysis | host web search / fallback engines |
+
+**Example**:
+- Primary: "Library X has 10k stars, 200 open issues, last commit 2 weeks ago"
+- Base: "Library X mentioned in 15 blog posts as 'production-ready', 3 posts warn about memory leaks"
+- **Combined**: Repository health + Real-world adoption + Known issues = Complete technical picture
+
+---
+
+## Quality Indicators
+
+| Metric | Good | Warning | Bad |
+|--------|------|---------|-----|
+| Last commit | <1 month | 1-6 months | >6 months |
+| Open issues | <50 | 50-200 | >200 |
+| Response time | <1 week | 1-4 weeks | >1 month |
+| Ecosystem mentions (Base Layer) | Growing | Stable | Declining |

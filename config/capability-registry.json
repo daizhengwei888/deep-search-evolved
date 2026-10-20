@@ -1,0 +1,307 @@
+{
+  "version": 2,
+  "description": "Capability inventory for deep-search 5.0. host_native_tools are preferred when present; *_providers are bundled skills/scripts used as fallbacks. Tool names can differ by host version: check the live tool list.",
+  "capabilities": [
+    {
+      "name": "broad_web_search",
+      "primary_provider": "multi-search-engine",
+      "fallback_providers": [
+        "search-cluster"
+      ],
+      "host_native_tools": {
+        "claude-code": [
+          "WebSearch",
+          "WebFetch"
+        ],
+        "codex": [
+          "web_search"
+        ],
+        "opencode": [
+          "websearch",
+          "webfetch"
+        ],
+        "zcode": [
+          "web_search",
+          "web_fetch",
+          "web-search-prime (MCP, optional)",
+          "web-reader (MCP, optional)"
+        ],
+        "hermes": [],
+        "openclaw": [
+          "web_search",
+          "web_fetch"
+        ]
+      },
+      "platform_providers": {
+        "opencode": "multi-search-engine",
+        "codex": "multi-search-engine",
+        "claude-code": "multi-search-engine",
+        "zcode": "multi-search-engine",
+        "hermes": "multi-search-engine",
+        "openclaw": "multi-search-engine"
+      },
+      "platform_fallback_providers": {
+        "opencode": [
+          "search-cluster"
+        ],
+        "codex": [
+          "search-cluster"
+        ],
+        "claude-code": [
+          "search-cluster"
+        ],
+        "zcode": [
+          "search-cluster"
+        ],
+        "hermes": [
+          "search-cluster"
+        ],
+        "openclaw": [
+          "search-cluster"
+        ]
+      },
+      "availability_note": "Bundled direct-fetch engines are fragile (2026-10 measurement: 3-5 of 17 returned parseable results). Prefer host_native_tools; run scripts/probe-search.py to see what works now.",
+      "required": true,
+      "used_for": [
+        "general coverage",
+        "cross-validation",
+        "context expansion"
+      ]
+    },
+    {
+      "name": "community_discussion",
+      "primary_provider": "news-aggregator-skill",
+      "fallback_providers": [
+        "multi-search-engine"
+      ],
+      "host_native_tools": {
+        "claude-code": [
+          "WebSearch",
+          "WebFetch"
+        ],
+        "codex": [
+          "web_search"
+        ],
+        "opencode": [
+          "websearch",
+          "webfetch"
+        ],
+        "zcode": [
+          "web_search",
+          "web_fetch",
+          "web-search-prime (MCP, optional)",
+          "web-reader (MCP, optional)"
+        ],
+        "hermes": [],
+        "openclaw": [
+          "web_search",
+          "web_fetch"
+        ]
+      },
+      "platform_providers": {
+        "opencode": "news-aggregator-skill",
+        "codex": "news-aggregator-skill",
+        "claude-code": "news-aggregator-skill",
+        "zcode": "news-aggregator-skill",
+        "hermes": "news-aggregator-skill",
+        "openclaw": "news-aggregator-skill"
+      },
+      "platform_fallback_providers": {
+        "opencode": [
+          "multi-search-engine"
+        ],
+        "codex": [
+          "multi-search-engine"
+        ],
+        "claude-code": [
+          "multi-search-engine"
+        ],
+        "zcode": [
+          "multi-search-engine"
+        ],
+        "hermes": [
+          "multi-search-engine"
+        ],
+        "openclaw": [
+          "multi-search-engine"
+        ]
+      },
+      "availability_note": "Hacker News via the public Algolia API; Reddit needs OAuth for reliable access; V2EX threads are found via site: search.",
+      "required": false,
+      "used_for": [
+        "hackernews",
+        "community sentiment",
+        "discussion surfaces"
+      ]
+    },
+    {
+      "name": "academic_research",
+      "primary_provider": "academic-deep-research",
+      "fallback_providers": [
+        "multi-search-engine"
+      ],
+      "host_native_tools": {
+        "claude-code": [
+          "WebSearch",
+          "WebFetch"
+        ],
+        "codex": [
+          "web_search"
+        ],
+        "opencode": [
+          "websearch",
+          "webfetch"
+        ],
+        "zcode": [
+          "web_search",
+          "web_fetch",
+          "web-search-prime (MCP, optional)",
+          "web-reader (MCP, optional)"
+        ],
+        "hermes": [],
+        "openclaw": [
+          "web_search",
+          "web_fetch"
+        ]
+      },
+      "platform_providers": {
+        "opencode": "academic-deep-research",
+        "codex": "academic-deep-research",
+        "claude-code": "academic-deep-research",
+        "zcode": "academic-deep-research",
+        "hermes": "academic-deep-research",
+        "openclaw": "academic-deep-research"
+      },
+      "platform_fallback_providers": {
+        "opencode": [
+          "multi-search-engine"
+        ],
+        "codex": [
+          "multi-search-engine"
+        ],
+        "claude-code": [
+          "multi-search-engine"
+        ],
+        "zcode": [
+          "multi-search-engine"
+        ],
+        "hermes": [
+          "multi-search-engine"
+        ],
+        "openclaw": [
+          "multi-search-engine"
+        ]
+      },
+      "availability_note": "Bibliographic APIs (Crossref, OpenAlex, Semantic Scholar, arXiv, PubMed) are used for citation verification; see references/vertical-enhancers/scholar.md.",
+      "required": false,
+      "used_for": [
+        "papers",
+        "citations",
+        "citation verification",
+        "research context"
+      ]
+    },
+    {
+      "name": "code_intelligence",
+      "primary_provider": "github",
+      "fallback_providers": [
+        "multi-search-engine"
+      ],
+      "optional_external": true,
+      "availability_note": "Primary provider is not bundled. Authenticated gh CLI or GITHUB_TOKEN is recommended (unauthenticated REST is 60 requests/hour).",
+      "host_native_tools": {
+        "claude-code": [
+          "Bash (gh)"
+        ],
+        "codex": [
+          "shell (gh)"
+        ],
+        "opencode": [
+          "bash (gh)"
+        ],
+        "zcode": [
+          "shell (gh)"
+        ],
+        "hermes": [],
+        "openclaw": []
+      },
+      "platform_providers": {
+        "opencode": "github",
+        "codex": "github",
+        "claude-code": "github",
+        "zcode": "github",
+        "hermes": "github",
+        "openclaw": "github"
+      },
+      "platform_fallback_providers": {
+        "opencode": [
+          "multi-search-engine"
+        ],
+        "codex": [
+          "multi-search-engine"
+        ],
+        "claude-code": [
+          "multi-search-engine"
+        ],
+        "zcode": [
+          "multi-search-engine"
+        ],
+        "hermes": [
+          "multi-search-engine"
+        ],
+        "openclaw": [
+          "multi-search-engine"
+        ]
+      },
+      "required": false,
+      "used_for": [
+        "repositories",
+        "issues",
+        "developer artifacts"
+      ]
+    },
+    {
+      "name": "document_processing",
+      "primary_provider": "pdf-text-extractor",
+      "fallback_providers": [],
+      "optional_external": true,
+      "availability_note": "Optional external dependency. Local Python alternatives: pymupdf4llm or pdfplumber (light), docling (heavier). See references/tools/document-processing.md.",
+      "python_alternatives": [
+        "pymupdf4llm",
+        "pdfplumber",
+        "docling"
+      ],
+      "host_native_tools": {
+        "claude-code": [
+          "Read (PDF)"
+        ],
+        "codex": [],
+        "opencode": [],
+        "zcode": [],
+        "hermes": [],
+        "openclaw": []
+      },
+      "platform_providers": {
+        "opencode": "pdf-text-extractor",
+        "codex": "pdf-text-extractor",
+        "claude-code": "pdf-text-extractor",
+        "zcode": "pdf-text-extractor",
+        "hermes": "pdf-text-extractor",
+        "openclaw": "pdf-text-extractor"
+      },
+      "platform_fallback_providers": {
+        "opencode": [],
+        "codex": [],
+        "claude-code": [],
+        "zcode": [],
+        "hermes": [],
+        "openclaw": []
+      },
+      "required": false,
+      "used_for": [
+        "pdf parsing",
+        "structured document extraction"
+      ]
+    }
+  ]
+}

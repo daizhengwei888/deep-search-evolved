@@ -1,0 +1,134 @@
+{
+  "version": 2,
+  "description": "Evidence normalization, verification, independence and conflict policy for deep-search 5.0",
+  "dedupe": {
+    "primary_keys": [
+      "url",
+      "claim"
+    ],
+    "normalize_url": true,
+    "drop_exact_duplicates": true,
+    "lineage_keys": [
+      "stable_identifier",
+      "independence_group"
+    ],
+    "count_lineage_once": true,
+    "lineage_examples": [
+      "syndicated copies of one wire story = one lineage",
+      "articles quoting one press release = one lineage",
+      "preprint and journal version of one study = one lineage unless contents differ"
+    ]
+  },
+  "verification": {
+    "statuses": [
+      "FETCHED",
+      "IDENTITY_VERIFIED",
+      "SUPPORT_VERIFIED",
+      "FAILED"
+    ],
+    "conclusions_require": "SUPPORT_VERIFIED",
+    "never_cite_unretrieved_urls": true,
+    "on_failure": "remove the citation or downgrade the claim to unverified background",
+    "papers": {
+      "check_fields": [
+        "identifier",
+        "title",
+        "first_author",
+        "year"
+      ],
+      "databases": [
+        "crossref",
+        "openalex",
+        "semantic_scholar",
+        "arxiv",
+        "pubmed"
+      ],
+      "single_database_miss": "UNVERIFIED (not fabricated)",
+      "likely_fabricated_when": "absent from several databases, or metadata contradicts the identifier record"
+    },
+    "vocabulary": {
+      "record_field": "verification_status",
+      "statuses": [
+        "FETCHED",
+        "IDENTITY_VERIFIED",
+        "SUPPORT_VERIFIED",
+        "UNVERIFIED",
+        "FAILED"
+      ],
+      "natural_language_labels": {
+        "VERIFIED_FROM_AVAILABLE_MATERIAL": "SUPPORT_VERIFIED",
+        "MODEL_BACKGROUND_UNVERIFIED": "UNVERIFIED",
+        "CANNOT_VERIFY": "FAILED"
+      },
+      "paper_check": {
+        "VERIFIED": "SUPPORT_VERIFIED",
+        "UNVERIFIED": "UNVERIFIED"
+      },
+      "note": "四个地方（schema / policy / scholar.md / runtime-contract.md）的用词都映射到本字段的五个值；结论只能用 SUPPORT_VERIFIED。"
+    }
+  },
+  "confidence_rules": {
+    "basis": [
+      "directness",
+      "independence",
+      "consistency",
+      "completeness",
+      "applicability",
+      "bias_or_measurement_risk"
+    ],
+    "never_from_source_count_alone": true,
+    "single_authoritative_primary_record_may_be_high": true,
+    "high_confidence_source_types": [
+      "academic",
+      "document",
+      "legal",
+      "financial"
+    ],
+    "supporting_source_types": [
+      "web",
+      "news",
+      "code",
+      "hardware"
+    ],
+    "context_only_source_types": [
+      "community"
+    ],
+    "community_requires_supporting_source": true,
+    "community_is_primary_for": [
+      "user experience",
+      "reactions",
+      "complaints",
+      "community sentiment"
+    ]
+  },
+  "conflict_rules": {
+    "mark_conflict_when_same_claim_has_opposing_support": true,
+    "normalize_before_comparing": [
+      "definition",
+      "unit",
+      "denominator",
+      "population",
+      "geography",
+      "version",
+      "jurisdiction",
+      "time_period"
+    ],
+    "never_resolve_by_source_count": true,
+    "outcomes": [
+      "RESOLVED_FACTUAL_ERROR",
+      "DIFFERENT_DEFINITION",
+      "DIFFERENT_TIME_PERIOD",
+      "DIFFERENT_POPULATION_OR_SCOPE",
+      "METHOD_DEPENDENT",
+      "GENUINELY_UNRESOLVED"
+    ],
+    "prefer_direct_sources_over_aggregated_commentary": true,
+    "material_unresolved_conflicts_in_main_text": true,
+    "record_unresolved_conflicts_in_appendix": true
+  },
+  "synthesis_rules": {
+    "separate_evidence_from_inference": true,
+    "preserve_limitations_section": true,
+    "require_confidence_annotation": true
+  }
+}

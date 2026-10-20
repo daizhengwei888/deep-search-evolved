@@ -1,0 +1,33 @@
+{
+  "version": 2,
+  "description": "Execution profiles. min_sources / min_domains are SOFT guardrails: falling short triggers a coverage review, never a forced search or a completion certificate.",
+  "profiles": {
+    "default": {
+      "preserve_output_contract": true,
+      "output_form_default": "STANDARD",
+      "min_sources": 5,
+      "min_domains": 3,
+      "guardrails_are_soft": true,
+      "allow_fallbacks": true,
+      "report_contract": "contracts/output-contract.md"
+    },
+    "fast": {
+      "preserve_output_contract": true,
+      "output_form_default": "COMPACT",
+      "min_sources": 2,
+      "min_domains": 1,
+      "guardrails_are_soft": true,
+      "allow_fallbacks": true,
+      "report_contract": "contracts/output-contract.md"
+    },
+    "deep": {
+      "preserve_output_contract": true,
+      "output_form_default": "FULL",
+      "min_sources": 8,
+      "min_domains": 4,
+      "guardrails_are_soft": true,
+      "allow_fallbacks": true,
+      "report_contract": "contracts/output-contract.md"
+    }
+  }
+}

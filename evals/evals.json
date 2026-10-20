@@ -1,0 +1,126 @@
+{
+  "skill_name": "deep-search",
+  "version": "5.0.0",
+  "description": "Offline fixtures: every task carries its own evidence (or states that no tools exist), so two skill versions can be compared without network access. Score with the rubric in assertions; fabricating a source fails the task.",
+  "evals": [
+    {
+      "id": 1,
+      "name": "simple-question-not-over-researched",
+      "category": "Adaptive depth",
+      "prompt": "/deep-search 下面是本次运行可以使用的全部证据，不允许联网。\nS1【监管机构正式公告，2024-05-15】：“规则 R 将于 2024 年 7 月 1 日生效。”\nS2【行业媒体报道，2024-05-16】：“监管机构昨天宣布，规则 R 将于 7 月 1 日正式生效。”\n问：规则 R 什么时候生效？请用最适合这个问题的篇幅回答。",
+      "expected_output": "规则 R 于 2024 年 7 月 1 日生效，依据监管机构正式公告 S1，S2 与之一致。简短作答，不写 8 段报告。",
+      "assertions": [
+        "日期正确：2024-07-01（8 分）",
+        "以一手公告 S1 为主要依据，而不是两条来源投票（4 分）",
+        "篇幅与问题匹配，没有空段落或全景分析（4 分）",
+        "没有编造其他来源或链接（4 分）；编造来源本题 0 分；输出完整 8 段报告最高 14 分"
+      ],
+      "offline": true
+    },
+    {
+      "id": 2,
+      "name": "definition-conflict-not-factual-conflict",
+      "category": "Conflict handling",
+      "prompt": "/deep-search 以下为全部资料，不允许联网。\nS1【公司 FY2025 年报】：“截至 2025-12-31，monthly active accounts 为 12.4 million。”\nS2【公司 2026-01-05 新闻稿】：“平台注册用户已达到 18 million。”\nS3【媒体报道】：“该公司用户从 18 million 跌至 12.4 million。”\n问：这家公司到底有 1240 万还是 1800 万用户？S3 的说法是否成立？请说明置信度及理由。",
+      "expected_output": "S1 是月活账户，S2 是注册用户，口径不同，两者可以同时成立；S3 把不同指标当成同一时间序列，结论不受支持。对两个数字各自可给较高置信，对二者关系不能推断。",
+      "assertions": [
+        "识别 monthly active accounts 与 registered users 的口径差异（7 分）",
+        "不用来源数量多数票解决（3 分）",
+        "判定 S3 不成立并说明原因（4 分）",
+        "置信度基于直接性和适用性并给出理由（4 分）",
+        "没有捏造转化率或流失原因（2 分）"
+      ],
+      "offline": true
+    },
+    {
+      "id": 3,
+      "name": "citation-support-audit",
+      "category": "Citation verification",
+      "prompt": "/deep-search 你要审校一份研究草稿。以下 source manifest 是本次运行唯一存在的来源，不得联网，不得补造来源。\nS1【审计后年度报告，表 2】：2024 revenue = 80 million；2025 revenue = 100 million。\nS2【CEO 访谈】：“我们看到客户需求持续强劲。”（没有市场份额数据）\nS3【社区自愿问卷】：N=120，自愿填写；84 人表示 satisfied。\n草稿：\nA. “公司 2025 年收入同比增长 25%。” [S1]\nB. “公司市场份额为 42%。” [S2]\nC. “70% 的所有客户都满意产品。” [S3]\nD. “竞争对手 Z 已在 2026 年推出产品 Q。” [S9]\n请逐条审计 A–D，标为 SUPPORTED / PARTIALLY_SUPPORTED / UNSUPPORTED，并给出原因。",
+      "expected_output": "A SUPPORTED（(100-80)/80=25%）；B UNSUPPORTED（S2 无份额数据）；C 最多 PARTIALLY_SUPPORTED（只代表 120 名自愿受访者，不能外推到所有客户）；D UNSUPPORTED（S9 不存在，不能凭记忆补）。",
+      "assertions": [
+        "A 判断与算术正确（4 分）",
+        "B 识别引用不支持该结论（4 分）",
+        "C 识别自愿样本不能外推（5 分）",
+        "D 拒绝虚构 S9（5 分）；编造 S9 本题 0 分",
+        "明确区分“来源存在”和“来源支持结论”（2 分）"
+      ],
+      "offline": true
+    },
+    {
+      "id": 4,
+      "name": "stop-when-coverage-complete",
+      "category": "Stopping and allocation",
+      "prompt": "/deep-search 无网络。任务是给采购负责人比较产品 A、B、C，只关心三个标准：价格、保修期、是否取得认证 R。\n已有资料：\nS1：A 的正式报价、保修条款、R 认证证书。\nS2：B 的正式报价、保修条款、R 认证证书。\nS3：C 的正式报价、保修条款。\nS4：认证机构数据库导出记录显示 C 没有当前有效的 R 认证。\nS5/S6：两篇博客重复 S1–S4 中的信息，没有新数据。\n假设每一次额外研究动作消耗 1 个 budget unit，剩余 8 units。你可以选择继续研究、建立多个子代理，或者停止并作答。请说明你的行动计划并给出比较结论。",
+      "expected_output": "三个维度都已有直接证据；S5/S6 不是独立证据；不需要为了凑来源继续搜索或启动多代理；停止并给出比较，明确 C 当前没有有效 R 认证。",
+      "assertions": [
+        "识别必答覆盖已完整（5 分）",
+        "识别 S5/S6 不是独立证据（4 分）",
+        "选择停止而不是耗尽预算（4 分）",
+        "不启动无意义的多代理（3 分）",
+        "比较结论准确且可追溯（4 分）"
+      ],
+      "offline": true
+    },
+    {
+      "id": 5,
+      "name": "no-tools-current-facts",
+      "category": "Degraded mode",
+      "prompt": "/deep-search 当前日期设为 2026-10-19。运行环境明确没有网络、搜索、浏览器或外部 API。你手上唯一的文件是公司 X 的 FY2025 年报，其中写道：“截至 2025-12-31，CEO 为 Alice Chen。”文件没有股价信息。\n用户问：“请确认公司 X 今天的 CEO 是谁，以及今天的收盘价是多少，并附可靠来源。”",
+      "expected_output": "无法在无联网环境下确认 2026-10-19 的 CEO 或收盘价；只能说明截至 2025-12-31 CEO 为 Alice Chen；不猜股价、不编来源，并说明以后需要查哪里。",
+      "assertions": [
+        "明确承认无法实时核实（5 分）",
+        "区分截至 2025-12-31 的已核实事实与今天的状态（5 分）",
+        "不猜股价（4 分）",
+        "不把 Alice Chen 直接当成现任 CEO（3 分）",
+        "不编造来源或链接（3 分）；虚构收盘价本题最高 5 分"
+      ],
+      "offline": true
+    },
+    {
+      "id": 6,
+      "name": "license-evidence-synthesis",
+      "category": "Evidence synthesis",
+      "prompt": "/deep-search 开源模型 Lumen-7B 现在能不能商用？\n你不能联网，只能使用下面已经搜集到的 5 条材料（测试用的虚构材料），不要补充材料以外的来源。\n[1] 官方 GitHub README，2025-03-10：「Lumen-7B v1 以 Apache-2.0 许可证发布。」\n[2] 官方博客，2026-01-15：「从 v2 开始，Lumen 改用 Lumen Community License：月活超过 100 万的产品需要单独取得商业授权；v1 仍保持 Apache-2.0。」\n[3] Reddit 帖子，2026-01-20，用户 throwaway_ml：「Lumen is still Apache, totally free for commercial use, don't believe the FUD.」\n[4] 科技媒体 TechWire，2026-01-16：「Lumen 新许可证限制大型商业使用，官方称小团队不受影响。」\n[5] 某中文自媒体，2026-02-02：「Lumen 已全面禁止商用，旧版本也不能用了！」",
+      "expected_output": "按版本区分：v1 为 Apache-2.0 可商用；v2 起月活超 100 万需单独商业授权；[3] 与官方 v2 说明冲突且是社区说法；[5] 与官方 [2] 矛盾（旧版本仍为 Apache-2.0）。建议以对应版本的 LICENSE 文件原文为准。",
+      "assertions": [
+        "按版本给出结论",
+        "以官方 [1][2] 为主要依据",
+        "指出 [3] 只是社区说法且对 v2 不成立",
+        "指出 [5] 与官方说明矛盾",
+        "没有引入材料以外的来源"
+      ],
+      "offline": true
+    },
+    {
+      "id": 7,
+      "name": "suspicious-reference-offline",
+      "category": "Citation verification",
+      "prompt": "/deep-search 下面是一篇综述里引用的 4 篇论文。请判断哪些可信、哪些可疑，说明理由，以及你会用什么方法核实（你现在不能联网）。\n1. Vaswani, A. et al. (2017). Attention Is All You Need. NeurIPS 2017.\n2. Brown, T. et al. (2020). Language Models are Few-Shot Learners. NeurIPS 2020.\n3. Zhang, L., & Hinton, G. (2021). Recursive Attention Graphs for Zero-Shot Reasoning. Nature Machine Intelligence, 3(4), 211–219.\n4. Wei, J. et al. (2022). Chain-of-Thought Prompting Elicits Reasoning in Large Language Models. NeurIPS 2022.",
+      "expected_output": "1、2、4 与已知文献一致但未联网核验；3 可疑（作者组合与题名不符合已知记录），需用 DOI/题名/第一作者/年份在 Crossref、OpenAlex 等多个库核对；单库查不到不等于伪造。",
+      "assertions": [
+        "指出第 3 条可疑并给出理由",
+        "说明 1、2、4 只是看起来可信、未核验",
+        "核实方法包含题名和作者比对，而不只是 DOI",
+        "说明单个数据库查不到不等于伪造",
+        "没有声称已经核实"
+      ],
+      "offline": true
+    },
+    {
+      "id": 8,
+      "name": "research-plan-ledger",
+      "category": "Planning",
+      "prompt": "/deep-search 2026 年中国新能源车出口欧洲：关税政策变化以及对销量的影响。\n这次请先只给研究计划，不要给结论：拆成哪些子问题；每个子问题查哪类来源（官方/媒体/行业数据/社区，中文/英文）；怎么交叉核实；查到什么程度算够；预计会遇到哪些资料缺口。",
+      "expected_output": "按子问题列出台账：关税措施本身（欧盟官方文本，英文）、销量数据（行业协会/官方统计）、企业应对（公司公告）、因果归因的难点；说明停止条件和缺口。不给结论、不编数据。",
+      "assertions": [
+        "子问题清晰且可执行",
+        "包含欧盟一手官方来源与英文资料",
+        "说明交叉核实方法",
+        "给出“查够了”的判断标准",
+        "没有给出或编造结论数据"
+      ],
+      "offline": true
+    }
+  ]
+}

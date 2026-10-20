@@ -1,0 +1,283 @@
+{
+  "version": 2,
+  "description": "Intent routing table for deep-search. ASCII keywords match whole words (case-insensitive); CJK keywords match as substrings. Highest score wins; ties go to the earlier route.",
+  "default_route": {
+    "intent": "universal",
+    "primary_agent": "Global Observer",
+    "primary_capabilities": [
+      "broad_web_search"
+    ],
+    "secondary_capabilities": [
+      "community_discussion"
+    ],
+    "min_sources": 5,
+    "min_domains": 3
+  },
+  "routes": [
+    {
+      "intent": "academic",
+      "keywords": [
+        "paper",
+        "papers",
+        "arxiv",
+        "citation",
+        "citations",
+        "literature",
+        "literature review",
+        "preprint",
+        "doi",
+        "journal",
+        "peer review",
+        "systematic review",
+        "meta-analysis",
+        "论文",
+        "文献",
+        "引用",
+        "综述",
+        "学术",
+        "期刊",
+        "预印本"
+      ],
+      "primary_agent": "The Scholar",
+      "primary_capabilities": [
+        "academic_research",
+        "broad_web_search"
+      ],
+      "secondary_capabilities": [
+        "community_discussion"
+      ],
+      "min_sources": 8,
+      "min_domains": 4
+    },
+    {
+      "intent": "legal",
+      "keywords": [
+        "legal",
+        "law",
+        "compliance",
+        "gdpr",
+        "regulation",
+        "regulatory",
+        "lawsuit",
+        "tariff",
+        "tariffs",
+        "sanction",
+        "sanctions",
+        "export control",
+        "export controls",
+        "license",
+        "licence",
+        "licensing",
+        "terms of service",
+        "commercial use",
+        "法律",
+        "法规",
+        "合规",
+        "监管",
+        "诉讼",
+        "关税",
+        "反倾销",
+        "反补贴",
+        "制裁",
+        "出口管制",
+        "贸易政策",
+        "许可证",
+        "许可协议",
+        "授权",
+        "商用",
+        "条例",
+        "政策"
+      ],
+      "primary_agent": "Legal Decoder",
+      "primary_capabilities": [
+        "broad_web_search",
+        "document_processing"
+      ],
+      "secondary_capabilities": [],
+      "min_sources": 6,
+      "min_domains": 3
+    },
+    {
+      "intent": "hardware",
+      "keywords": [
+        "hardware",
+        "chip",
+        "chips",
+        "device",
+        "devices",
+        "teardown",
+        "benchmark",
+        "laptop",
+        "computer",
+        "phone",
+        "gpu",
+        "cpu",
+        "硬件",
+        "芯片",
+        "设备",
+        "拆解",
+        "跑分",
+        "电脑",
+        "笔记本",
+        "手机",
+        "显卡",
+        "处理器"
+      ],
+      "primary_agent": "Hardware Inspector",
+      "primary_capabilities": [
+        "broad_web_search",
+        "document_processing"
+      ],
+      "secondary_capabilities": [
+        "community_discussion"
+      ],
+      "min_sources": 6,
+      "min_domains": 3
+    },
+    {
+      "intent": "code_tech",
+      "keywords": [
+        "repo",
+        "repository",
+        "github",
+        "library",
+        "api",
+        "framework",
+        "sdk",
+        "open source",
+        "open-source",
+        "npm",
+        "pypi",
+        "代码",
+        "代码库",
+        "开源",
+        "框架",
+        "开发库",
+        "编程"
+      ],
+      "primary_agent": "Technical Recon",
+      "primary_capabilities": [
+        "code_intelligence",
+        "broad_web_search"
+      ],
+      "secondary_capabilities": [
+        "community_discussion"
+      ],
+      "min_sources": 6,
+      "min_domains": 3
+    },
+    {
+      "intent": "news_drama",
+      "keywords": [
+        "breaking news",
+        "news",
+        "announcement",
+        "controversy",
+        "scandal",
+        "rumor",
+        "rumors",
+        "新闻",
+        "公告",
+        "争议",
+        "丑闻",
+        "传闻",
+        "最新消息",
+        "发布会",
+        "爆料"
+      ],
+      "primary_agent": "Fact Assassin",
+      "primary_capabilities": [
+        "community_discussion",
+        "broad_web_search"
+      ],
+      "secondary_capabilities": [],
+      "min_sources": 6,
+      "min_domains": 3
+    },
+    {
+      "intent": "business",
+      "keywords": [
+        "startup",
+        "funding",
+        "sec filing",
+        "10-k",
+        "pricing",
+        "business model",
+        "valuation",
+        "revenue",
+        "earnings",
+        "ipo",
+        "due diligence",
+        "创业",
+        "融资",
+        "定价",
+        "商业模式",
+        "估值",
+        "财报",
+        "营收",
+        "上市公司",
+        "尽调",
+        "尽职调查"
+      ],
+      "primary_agent": "Compliance Auditor",
+      "primary_capabilities": [
+        "broad_web_search",
+        "document_processing"
+      ],
+      "secondary_capabilities": [
+        "community_discussion"
+      ],
+      "min_sources": 6,
+      "min_domains": 3
+    },
+    {
+      "intent": "community",
+      "keywords": [
+        "reddit",
+        "complaints",
+        "community",
+        "users say",
+        "user reviews",
+        "feedback",
+        "社区",
+        "吐槽",
+        "反馈",
+        "用户评价",
+        "口碑",
+        "差评"
+      ],
+      "primary_agent": "Underground OSINT",
+      "primary_capabilities": [
+        "community_discussion",
+        "broad_web_search"
+      ],
+      "secondary_capabilities": [],
+      "min_sources": 5,
+      "min_domains": 3
+    },
+    {
+      "intent": "analysis",
+      "keywords": [
+        "bias",
+        "incentives",
+        "stakeholders",
+        "narrative",
+        "agenda",
+        "偏见",
+        "激励",
+        "利益相关方",
+        "叙事",
+        "议程"
+      ],
+      "primary_agent": "Oracle",
+      "primary_capabilities": [
+        "broad_web_search"
+      ],
+      "secondary_capabilities": [
+        "community_discussion"
+      ],
+      "min_sources": 5,
+      "min_domains": 3
+    }
+  ]
+}
